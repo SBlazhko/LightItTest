@@ -16,7 +16,7 @@ Devise.setup do |config|
 
   # Configure the class responsible to send e-mails.
   # config.mailer = 'Devise::Mailer'
-  config.omniauth :google_oauth2, "213647331533-u0l0eo5dhg4ltcj1d1iklh8r56ffe18f.apps.googleusercontent.com", "L4RPeipsm-R-E-lH0lQ1712d", { }
+  config.omniauth :google_oauth2, "213647331533-ttllon03100fdautjo63g5trjt7ud84b.apps.googleusercontent.com", "XUpUKCLA16w8VH6WoApsL3HJ", { }
   config.omniauth :facebook, "1634160080233800", "aec6f8c2bd8655f7600439303d2393ea", { }
   # Configure the parent class responsible to send e-mails.
   # config.parent_mailer = 'ActionMailer::Base'
