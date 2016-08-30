@@ -16,10 +16,11 @@ Devise.setup do |config|
 
   # Configure the class responsible to send e-mails.
   # config.mailer = 'Devise::Mailer'
-  # config.omniauth :google_oauth2, "213647331533-ttllon03100fdautjo63g5trjt7ud84b.apps.googleusercontent.com", "XUpUKCLA16w8VH6WoApsL3HJ", { }
+  config.omniauth :google_oauth2, "213647331533-ttllon03100fdautjo63g5trjt7ud84b.apps.googleusercontent.com", 
+                                                                              "XUpUKCLA16w8VH6WoApsL3HJ", { }
   config.omniauth :facebook, "1634160080233800", "aec6f8c2bd8655f7600439303d2393ea", { }
-  config.omniauth :google_oauth2, "241693823924-kvrk5u2fcvglko0qc0l2efk0a2ll3kha.apps.googleusercontent.com",
-                  "OBKyW4mpZ080GdBeyRd-x1GC"
+  # config.omniauth :google_oauth2, "241693823924-kvrk5u2fcvglko0qc0l2efk0a2ll3kha.apps.googleusercontent.com",
+  #                 "OBKyW4mpZ080GdBeyRd-x1GC"
   # Configure the parent class responsible to send e-mails.
   # config.parent_mailer = 'ActionMailer::Base'
 
