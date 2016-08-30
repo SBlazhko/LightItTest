@@ -1,0 +1,10 @@
+<div class="row">
+	<%= form_for @post, url: posts_path do |f| %>
+	  <div class="col-md-8">
+			<%= f.text_area :text, class: 'form-control', rows: '3', placeholder: "Message text :)" %>
+	  </div>
+	  <div class="col-md-4">
+			<%= f.submit "Write message", class: "btn btn-success navbar-btn btn-lrg"%>
+	  </div>
+	<% end %>
+</div>

@@ -1,0 +1,21 @@
+<li>
+  <small>Submitted <%= time_ago_in_words(comment.created_at) %> ago by <%= User.find(comment.user_id).email%></small> ||
+  <% if user_signed_in? && comment.user_id == current_user.id %>
+    <%= link_to "Delete", comment_path(comment), method: :delete, class: "btn btn-success navbar-btn btn-xs" %>
+  <% end %><br>
+  <%= comment.text %> 
+
+  <% if user_signed_in? %>
+    <div class="row">
+      <%= form_for [comment, Comment.new] do |f| %>
+        <div class="col-md-12">
+            <%= f.text_field :text, placeholder: "Add reply to comment" %>
+            <%= f.submit "Reply to comment", class: "btn btn-warning navbar-btn btn-xs" %>
+        </div>
+      <% end %>
+    </div>
+  <% end %>
+      <ul>
+          <%= render comment.comments %>
+      </ul>
+</li>
