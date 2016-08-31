@@ -18,7 +18,6 @@ class User < ApplicationRecord
       user = User.where(:email => "#{access_token.uid}@#{access_token.provider}.com").first
     end 
 
-    # Uncomment the section below if you want users to be created if they don't exist
     unless user
         user = User.create(email: data["email"] ? data["email"] : "#{access_token.uid}@#{access_token.provider}.com",
            password: Devise.friendly_token[0,20]

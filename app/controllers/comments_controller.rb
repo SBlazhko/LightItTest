@@ -18,7 +18,7 @@ class CommentsController < ApplicationController
     redirect_to :back if comment.destroy
   end
  
-  protected
+  private
    
   def comment_params
     params.require(:comment).permit(:text)

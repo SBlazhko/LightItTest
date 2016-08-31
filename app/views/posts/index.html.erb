@@ -6,36 +6,36 @@
 	<% end %>
 	
 	<div class="panel panel-info page">
-			<% i=0 %>
-			<% @posts.each do |post| %>
-				<%i+=1%>
-			  <div class="panel-heading">
-					Message created <%= time_ago_in_words(post.created_at) %> by <%= User.find(post.user_id).email%>	 
-			  	<% if user_signed_in? && post.user_id == current_user.id %>
-			  		<%= link_to "Delete", post_path(post), method: :delete, class: "btn btn-success navbar-btn btn-xs" %>
-			  	<% end %>
-			 		<button class="btn btn-danger btn-xs cbut" iterate="<%=i%>">Show/Hide comments</button>
-			  </div>
-			  <tbody class="page">
-			  <div class="panel-body text-info">
-					<h3><%= post.text %></h3>
-				</div>
-
-				<% if user_signed_in? %>
-			  <div class="row" id="com_form<%=i%>" >	
-					<%= form_for [post, Comment.new] do |f| %>
-						<div class="col-md-12">
-							<%= f.text_field :text, placeholder: "Your comment :)" %>
-							<%= f.submit "Add comment", class: "btn btn-primary navbar-btn btn-xs" %>
-						</div>
-					<% end %>
-				</div>
-				<% end %>
-			<br>
-					<ul id="com_list<%=i%>" style="display:none">
-					  <%= render post.comments %>
-					</ul>
-			<% end %>
+		<% @posts.each do |post| %>
+		<div class="panel-heading">
+			Message created <%= time_ago_in_words(post.created_at) %> by <%= post.user.email %>	 
+			  <% if user_signed_in? && post.user_id == current_user.id %>
+			  	<%= link_to "Delete", post_path(post), method: :delete, class: "btn btn-danger navbar-btn btn-xs " %>
+				<%= render 'posts/update_modal', post: post %>
+			  <% end %>
+			<button class="btn btn-success btn-xs cbut">Show/Hide comments</button>
 		</div>
+			  
+		<div class="panel-body text-info">
+			<h3><%= post.text %></h3>
+		</div>
+
+
+		<% if user_signed_in? %>
+			<div class="row">	
+				<%= form_for [post, Comment.new] do |f| %>
+					<div class="col-md-12">
+						<%= f.text_field :text, placeholder: "Your comment :)" %>
+						<%= f.submit "Add comment", class: "btn btn-primary navbar-btn btn-xs" %>
+					</div>
+				<% end %>
+			</div>
+		<% end %><br>
+					
+			<ul style="display:none">
+					<%= render post.comments %>
+			</ul>
+		<% end %>
+	</div>
 		<%= paginate @posts, :theme => 'twitter-bootstrap-3'%>
 </div>

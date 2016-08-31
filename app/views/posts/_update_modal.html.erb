@@ -1,0 +1,17 @@
+<button class="btn btn-warning btn-xs" type="button" data-toggle="modal" data-target="#myModal">Update</button>
+<div id="myModal" class="modal fade">
+	<div class="modal-dialog modal-lg">
+		<div class="modal-content">
+			<div class="modal-header"><button class="close" type="button" data-dismiss="modal">×</button>
+				<h4 class="modal-title"></h4>
+			</div>
+				<div class="modal-body">
+					<%= form_for post, url: post_path(post) do |f| %>
+						<%= f.text_area :text %>
+						<%= f.submit 'Update' %>
+					<% end %>
+				</div>
+			<div class="modal-footer"><button class="btn btn-default" type="button" data-dismiss="modal">Закрыть</button></div>
+		</div>
+	</div>
+</div>

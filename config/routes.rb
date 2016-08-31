@@ -1,15 +1,14 @@
 Rails.application.routes.draw do
   devise_for :users, :controllers => { :omniauth_callbacks => "omniauth_callbacks" }
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
-  root "users#show"
+  root "posts#index"
 
-  resources :users, only: [:show] 
-  resources :posts, only: [:create, :index, :destroy] do
-  	resources :comments
+  resources :posts, only: [:create, :index, :destroy, :update] do
+  	resources :comments, only: [:create, :destroy, :new]
   end
 
   resources :comments do
-    resources :comments
+    resources :comments, only: [:create, :destroy, :new]
   end
 end
 
