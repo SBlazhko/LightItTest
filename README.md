@@ -1,8 +1,8 @@
 # Light It Test Task
 
-##Linux 
+##For Linux 
 
-###Install Ruby and Rails last stable version
+###Install Ruby and Rails last stable version and go step by step
 
 ```sh
 $ git clone git@github.com:SBlazhko/LightItTest.git
