@@ -12,18 +12,24 @@ class PostsController < ApplicationController
 	def create
 		@post = current_user.posts.new(post_params)
 		if @post.save
-			redirect_to :back
+			redirect_to :back, notice: "Post created"
+		else
+			redirect_to :back, alert: "Post not created"
 		end
 	end
 	
 	def update
-		@post.update(post_params)
-		redirect_to :back
+		if @post.update(post_params)
+			redirect_to :back, notice: "Post updated"
+		else
+			redirect_to :back, alert: "Post not updated"
+		end
 	end
 
 	def destroy
-		@post.destroy
-		redirect_to :back
+		if @post.destroy
+			redirect_to :back, notice: "Post destroyed"
+		end
 	end
 
 	private

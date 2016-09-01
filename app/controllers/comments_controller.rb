@@ -10,12 +10,18 @@ class CommentsController < ApplicationController
   def create
     @comment = @parent.comments.new(comment_params)
     @comment.user_id = current_user.id
-    redirect_to :back if @comment.save
+    if @comment.save 
+      redirect_to :back, notice: "Comment created"
+    else
+      redirect_to :back, alert: "Comment not created"
+    end
   end
 
   def destroy
     comment = Comment.find(params[:id])
-    redirect_to :back if comment.destroy
+    if comment.destroy
+      redirect_to :back, notice: "Comment destroyed"
+    end
   end
  
   private

@@ -1,41 +1,66 @@
-<div class="container">
+<div class="cont">
+
+	<% if flash[:notice] %>
+    <div class="notice"><%= flash[:notice] %></div>
+  <% elsif flash[:alert] %>
+    <div class="al"><%= flash[:alert] %></div>
+  <% end %>
+
 	<% if user_signed_in?  %>
 		<%= render partial: 'posts/new' %>
 	<% else %>
 		<%= render partial: 'posts/sign' %>
-	<% end %>
+	<% end %><br>
 	
-	<div class="panel panel-info page">
-		<% @posts.each do |post| %>
-		<div class="panel-heading">
-			Message created <%= time_ago_in_words(post.created_at) %> by <%= post.user.email %>	 
-			  <% if user_signed_in? && post.user_id == current_user.id %>
-			  	<%= link_to "Delete", post_path(post), method: :delete, class: "btn btn-danger navbar-btn btn-xs " %>
-				<%= render 'posts/update_modal', post: post %>
-			  <% end %>
-			<button class="btn btn-success btn-xs cbut">Show/Hide comments</button>
-		</div>
-			  
-		<div class="panel-body text-info">
-			<h3><%= post.text %></h3>
-		</div>
-
-
-		<% if user_signed_in? %>
-			<div class="row">	
-				<%= form_for [post, Comment.new] do |f| %>
-					<div class="col-md-12">
-						<%= f.text_field :text, placeholder: "Your comment :)" %>
-						<%= f.submit "Add comment", class: "btn btn-primary navbar-btn btn-xs" %>
+	<%i=0%>
+	<% @posts.each do |post| %>
+	<%i+=1%>
+		<div class="row">
+			<div class="col-md-10">
+				<div class="panel panel-info page">
+					<div class="panel-heading">
+						Message created <%= time_ago_in_words(post.created_at) %> by <%= post.user.email %>	
+						<button class="btn btn-success btn-xs cbut" iterate="<%=i%>">Hide comments</button> 
+						  <% if user_signed_in? && post.user_id == current_user.id %>
+						  	<%= link_to "Delete", post_path(post), method: :delete, class: "btn btn-danger navbar-btn btn-xs" %>
+								<button class="btn btn-warning btn-xs up" iterate="<%=i%>">Update</button>
+									<div id="edit<%=i%>" style='display:none'>
+										<%= form_for post, url: post_path(post) do |f| %>
+											<%= f.text_area :text, class: 'form-control', rows: '3' %>
+											<%= f.submit 'Update', class: "btn btn-success navbar-btn btn-sm" %>
+										<% end %>
+									</div>
+						  <% end %>
 					</div>
-				<% end %>
+						  
+					<div class="panel-body text-info">
+						<h3><%= post.text %></h3>
+					</div>
+				</div>
 			</div>
-		<% end %><br>
-					
-			<ul style="display:none">
-					<%= render post.comments %>
-			</ul>
-		<% end %>
-	</div>
-		<%= paginate @posts, :theme => 'twitter-bootstrap-3'%>
+		</div>
+
+		<div id="hide_com<%=i%>"> 
+			<div class="row">
+				<div class="col-md-10">
+					<div class="panel panel-warning page">
+						<div class="panel-body">
+							<% if user_signed_in? %>
+								<%= form_for [post, Comment.new] do |f| %>
+									<%= f.text_field :text, placeholder: "Your comment :)" %>
+									<%= f.submit "Add comment", class: "btn btn-primary navbar-btn btn-xs" %>
+								<% end %>
+							<% end %>
+									
+							<ul>
+								<%= render post.comments %>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	<% end %>
+
+	<%= paginate @posts, :theme => 'twitter-bootstrap-3'%>
 </div>

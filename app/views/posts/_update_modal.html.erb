@@ -2,16 +2,15 @@
 <div id="myModal" class="modal fade">
 	<div class="modal-dialog modal-lg">
 		<div class="modal-content">
-			<div class="modal-header"><button class="close" type="button" data-dismiss="modal">×</button>
+			<div class="modal-header"><button class="close" type="button" data-dismiss="modal">Close</button>
 				<h4 class="modal-title"></h4>
 			</div>
 				<div class="modal-body">
 					<%= form_for post, url: post_path(post) do |f| %>
-						<%= f.text_area :text %>
-						<%= f.submit 'Update' %>
+						<%= f.text_area :text, class: 'form-control', rows: '3' %>
+						<%= f.submit 'Update', class: "btn btn-success navbar-btn btn-sm" %>
 					<% end %>
 				</div>
-			<div class="modal-footer"><button class="btn btn-default" type="button" data-dismiss="modal">Закрыть</button></div>
 		</div>
 	</div>
 </div>
