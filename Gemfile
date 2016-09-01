@@ -33,7 +33,8 @@ gem 'devise'
 gem 'bootstrap-sass'
 gem 'kaminari'
 gem 'bootstrap-kaminari-views'
-gem 'rails_12factor'
+# gem 'rails_12factor'
+gem 'pry-rails'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
