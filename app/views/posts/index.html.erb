@@ -12,19 +12,17 @@
 		<%= render partial: 'posts/sign' %>
 	<% end %><br>
 	
-	<%i=0%>
 	<% @posts.each do |post| %>
-	<%i+=1%>
 		<div class="row">
 			<div class="col-md-10">
 				<div class="panel panel-info page">
 					<div class="panel-heading">
 						Message created <%= time_ago_in_words(post.created_at) %> by <%= post.user.email %>	
-						<button class="btn btn-success btn-xs cbut" iterate="<%=i%>">Hide comments</button> 
+						<button class="btn btn-success btn-xs cbut">Hide comments</button> 
 						  <% if user_signed_in? && post.user_id == current_user.id %>
 						  	<%= link_to "Delete", post_path(post), method: :delete, class: "btn btn-danger navbar-btn btn-xs" %>
-								<button class="btn btn-warning btn-xs up" iterate="<%=i%>">Update</button>
-									<div id="edit<%=i%>" style='display:none'>
+								<button class="btn btn-warning btn-xs up">Update</button>
+									<div class="edit" style='display:none'>
 										<%= form_for post, url: post_path(post) do |f| %>
 											<%= f.text_area :text, class: 'form-control', rows: '3' %>
 											<%= f.submit 'Update', class: "btn btn-success navbar-btn btn-sm" %>
@@ -32,15 +30,13 @@
 									</div>
 						  <% end %>
 					</div>
-						  
 					<div class="panel-body text-info">
 						<h3><%= post.text %></h3>
 					</div>
 				</div>
 			</div>
 		</div>
-
-		<div id="hide_com<%=i%>"> 
+		<div class="hide_com"> 
 			<div class="row">
 				<div class="col-md-10">
 					<div class="panel panel-default page">
@@ -51,17 +47,14 @@
 									<%= f.submit "Add comment", class: "btn btn-primary navbar-btn btn-xs" %>
 								<% end %>
 							<% end %>
-								
 							<ul>
 								<%= render post.comments %>
 							</ul>
-							
 						</div>
 					</div>
 				</div>
 			</div>
 		</div>
 	<% end %>
-
 	<%= paginate @posts, :theme => 'twitter-bootstrap-3'%>
 </div>

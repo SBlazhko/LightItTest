@@ -1,24 +1,17 @@
-# README
+# Light It Test Task
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+##Linux 
 
-Things you may want to cover:
+###Install Ruby and Rails last stable version
 
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+```sh
+$ git clone git@github.com:SBlazhko/LightItTest.git
+$ cd LightItTest
+$ bundle
+$ rake db:migrate
+$ rails s
+$ run http://localhost:3000/
+```
+	
+	
+		
